@@ -1,39 +1,81 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-  <title>Data Science and Data Visualization project</title>
-  <script src="https://d3js.org/d3.v7.min.js"></script>
-  <link rel="stylesheet" href="Style.css">
-
-
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sales Performance Dashboard</title>
+<link rel="stylesheet" href="style.css">
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
 </head>
 
 <body>
 
-  <div id="tooltip"
-  style="
-    position: absolute;
-    background: white;
-    border: 1px solid #ccc;
-    padding: 6px 10px;
-    font-size: 12px;
-    border-radius: 4px;
-    pointer-events: none;
-    opacity: 0;
-  ">
-</div>
+    <div class="dashboard-container">
+        <!-- HEADER -->
+        <header>
+            <h1>Sales Performance Dashboard</h1>
+            <div class="header-controls">
+                <button id="reset-btn">↺ Reset Filters</button>
+            </div>
+        </header>
 
+        <!-- KPI ROW (Hers) -->
+        <div class="kpi-container">
+            <div class="kpi-card"><div id="kpi-revenue" class="kpi-value">$0</div>Total Revenue</div>
+            <div class="kpi-card"><div id="kpi-profit" class="kpi-value">$0</div>Total Profit</div>
+            <div class="kpi-card"><div id="kpi-margin" class="kpi-value">0%</div>Profit Margin</div>
+            <div class="kpi-card"><div id="kpi-orders" class="kpi-value">0</div>Total Orders</div>
+        </div>
 
-  <svg id="top10-chart" width="900" height="400"></svg>
-  <svg id="scatter-chart" width="700" height="400"></svg>
+        <!-- ROW 1: Her Timeline Charts & Filter -->
+        <div class="timeline-row">
+            <div class="chart-card">
+                <div class="chart-title">Revenue Trends</div>
+                <div id="revenue-timeline"></div>
+            </div>
+            <div class="chart-card">
+                <div class="chart-title">Profit Trends</div>
+                <div id="profit-timeline"></div>
+            </div>
+            <!-- Filter Box -->
+            <div class="filter-box">
+                <h3>Global Filter</h3>
+                <label>Select Year:</label>
+                <select id="yearFilter">
+                    <option value="all">All Years</option>
+                </select>
+                <p style="font-size: 12px; margin-top:10px; opacity: 0.8;">
+                    *Click on Map or Pie Chart to filter by State or Category.
+                </p>
+            </div>
+        </div>
 
+        <!-- ROW 2: Your Charts (Pie & Bar) -->
+        <div class="middle-row">
+            <div class="chart-card" id="pie-container"></div>
+            <div class="chart-card" id="bar-container"></div>
+        </div>
 
+        <!-- ROW 3: Your Charts (Scatter & Map) -->
+        <div class="bottom-row">
+            <div class="chart-card" id="scatter-container"></div>
+            <div class="chart-card map-card" id="map-container">
+                <div class="card-title">Sum of Sales by State</div>
+            </div>
+        </div>
 
+    </div>
 
-  <script src="Top 10 Products by Sales and Profit.js"> </script>
-  <script src="Customer Segmentation.js"> </script>
+    <!-- Tooltip -->
+    <div id="tooltip" class="tooltip"></div>
+
+    <!-- Libraries -->
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/topojson@3/dist/topojson.min.js"></script>
+
+    <!-- Main Logic -->
+    <script type="module" src="interactivity.js"></script>
 
 </body>
-
 </html>
