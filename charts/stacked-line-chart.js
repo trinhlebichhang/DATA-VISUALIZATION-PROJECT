@@ -7,8 +7,8 @@ export function initStackedLineChart(containerId, metric, onClickHandler) {
     const width = 520; 
     const height = 320;
     const margin = { t: 20, r: 20, b: 40, l: 60 };
-    const w = width - margin.l - margin.r;
-    const h = height - margin.t - margin.b;
+    const w = width - margin.l - margin.r - 90;
+    const h = height - margin.t - margin.b ;
 
     const svg = container.append("svg")
         .attr("width", width)
