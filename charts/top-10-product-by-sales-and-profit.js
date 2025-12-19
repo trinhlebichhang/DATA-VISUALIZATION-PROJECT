@@ -6,10 +6,14 @@ export function initTop10Bar(containerId, onClickHandler) {
     // Auto-resize
     const width = container.node().getBoundingClientRect().width || 500;
     const height = container.node().getBoundingClientRect().height || 300;
+    
+    const legendWidth = 120; // space reserved for legend
+
 
     const margin = { top: 60, right: 100, bottom: 40, left: 160 };
-    const innerWidth = width - margin.left - margin.right;
+    const innerWidth = width - margin.left - margin.right - legendWidth;
     const innerHeight = height - margin.top - margin.bottom;
+
 
     const svg = container.append("svg")
         .attr("width", width)
@@ -50,8 +54,7 @@ export function initTop10Bar(containerId, onClickHandler) {
         { label: "Profit (Loss)", color: "#F44336" }
     ];
     const legend = svg.append("g")
-        .attr("transform", `translate(${width - 90}, ${margin.top})`);
-
+     .attr("transform", `translate(${margin.left + innerWidth + 20}, ${margin.top})`);
     legend.selectAll("g")
         .data(legendData)
         .enter().append("g")
